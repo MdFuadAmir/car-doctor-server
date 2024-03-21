@@ -5,7 +5,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// commit
+
  
 // middle Ware
 app.use(cors());
@@ -47,10 +47,11 @@ async function run() {
       res.send(result);
     })
     // bookings
-
     app.post('/bookings', async(req,res)=>{
       const booking = req.body;
       console.log(booking);
+      const result = await bookingCollection.insertOne(booking);
+      res.send(result);
     })
 
     // Send a ping to confirm a successful connection
